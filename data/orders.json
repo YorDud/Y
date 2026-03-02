@@ -1,0 +1,237 @@
+[
+  {
+    "id": "o_mlqcawlw_29ncfk",
+    "orderNumber": "Y-20260217-2025992E",
+    "createdAt": "2026-02-17T08:27:03.956Z",
+    "customer": {
+      "fullName": "Дудурев Ярослав",
+      "email": "yorikdud@mail.ru",
+      "phone": "+79653463689",
+      "comment": ""
+    },
+    "shipping": {
+      "carrier": "cdek",
+      "carrierLabel": "СДЭК (ПВЗ)",
+      "pvzAddress": "Московская область, Клин, Ленинградское шоссе, 55",
+      "postcode": "141601",
+      "lat": 56.348816,
+      "lon": 36.707299
+    },
+    "items": [
+      {
+        "productId": "p_mkf6s2o6_bkkb3z",
+        "name": "Y - 001",
+        "size": "L",
+        "color": null,
+        "quantity": 1,
+        "priceRub": 40,
+        "image": "/uploads/1771227325283_________________.png",
+        "imageAbs": "http://localhost:3000/uploads/1771227325283_________________.png"
+      }
+    ],
+    "totals": {
+      "itemsTotalRub": 40,
+      "shippingRub": 500,
+      "orderTotalRub": 540
+    },
+    "payment": {
+      "provider": "yookassa",
+      "status": "succeeded",
+      "paymentId": "TEST_PAYMENT"
+    },
+    "status": "paid",
+    "emailsSent": true
+  },
+  {
+    "id": "o_mlt5b6js_qtha8f",
+    "orderNumber": "Y-20260219-55E89898",
+    "createdAt": "2026-02-19T07:34:38.056Z",
+    "customer": {
+      "fullName": "Дудурев Ярослав",
+      "email": "yorikduda@mail.ru",
+      "phone": "+79653463689",
+      "comment": ""
+    },
+    "shipping": {
+      "carrier": "cdek",
+      "carrierLabel": "СДЭК (ПВЗ)",
+      "pvzAddress": "Владимирская область, Кольчугино, улица Добровольского, 2А — СДЭК (ПВЗ)",
+      "postcode": "141601",
+      "lat": 56.301549,
+      "lon": 39.377273,
+      "manual": false
+    },
+    "items": [
+      {
+        "productId": "p_mkf79gd1_idqvvo",
+        "name": "Y - 002",
+        "size": "L",
+        "color": null,
+        "quantity": 1,
+        "priceRub": 40,
+        "image": "/uploads/1771418132916_ttt.png",
+        "imageAbs": "http://localhost:3000/uploads/1771418132916_ttt.png"
+      }
+    ],
+    "totals": {
+      "itemsTotalRub": 40,
+      "shippingRub": 550,
+      "orderTotalRub": 590
+    },
+    "payment": {
+      "provider": "yookassa",
+      "status": "succeeded",
+      "paymentId": "TEST_PAYMENT"
+    },
+    "status": "paid",
+    "emailsSent": true
+  },
+  {
+    "id": "o_mm0avteb_ahy5n1",
+    "orderNumber": "Y-20260224-1120D2EE",
+    "createdAt": "2026-02-24T07:45:02.099Z",
+    "customer": {
+      "fullName": "Дудурев Ярослав",
+      "email": "yorikduda@mail.ru",
+      "phone": "+79653463689",
+      "comment": "ffgeregrttgre"
+    },
+    "shipping": {
+      "carrier": "cdek",
+      "carrierLabel": "СДЭК (ПВЗ)",
+      "pvzAddress": "Москва, улица Анатолия Живова, 6 — СДЭК (ПВЗ)",
+      "postcode": "123100",
+      "lat": 55.759932,
+      "lon": 37.553253,
+      "manual": false
+    },
+    "items": [
+      {
+        "productId": "p_mkf79gd1_idqvvo",
+        "name": "Y - 002",
+        "size": "S",
+        "color": null,
+        "quantity": 1,
+        "priceRub": 40,
+        "preorder": true,
+        "image": "/uploads/1771418132916_ttt.png",
+        "imageAbs": "http://localhost:3000/uploads/1771418132916_ttt.png"
+      },
+      {
+        "productId": "p_mkf82sj2_kla6q1",
+        "name": "Y - 003",
+        "size": "L",
+        "color": null,
+        "quantity": 1,
+        "priceRub": 40,
+        "preorder": false,
+        "image": "/uploads/1768467807050_v1_boxers.png",
+        "imageAbs": "http://localhost:3000/uploads/1768467807050_v1_boxers.png"
+      }
+    ],
+    "totals": {
+      "itemsTotalRub": 80,
+      "shippingRub": 550,
+      "orderTotalRub": 630
+    },
+    "payment": {
+      "provider": "yookassa",
+      "status": "succeeded",
+      "paymentId": "TEST_PAYMENT"
+    },
+    "status": "paid",
+    "emailsSent": true
+  },
+  {
+    "id": "o_mm8xg7v0_bcgnu9",
+    "orderNumber": "Y-20260302-501D35D9",
+    "createdAt": "2026-03-02T08:38:54.924Z",
+    "customer": {
+      "fullName": "Дудурев Ярослав",
+      "email": "yorikdud@mail.ru",
+      "phone": "+79653463689",
+      "comment": ""
+    },
+    "shipping": {
+      "carrier": "cdek",
+      "carrierLabel": "СДЭК (ПВЗ)",
+      "pvzAddress": "Москва, Пресненская набережная, 12 — СДЭК (ПВЗ)",
+      "postcode": "123112",
+      "lat": 55.74952,
+      "lon": 37.537852,
+      "manual": false
+    },
+    "items": [
+      {
+        "productId": "p_mkf79gd1_idqvvo",
+        "name": "Y - 002",
+        "size": "XL",
+        "color": null,
+        "quantity": 1,
+        "priceRub": 40,
+        "preorder": true,
+        "comingSoon": false,
+        "image": "/uploads/1771418132916_ttt.png",
+        "imageAbs": "http://localhost:3000/uploads/1771418132916_ttt.png"
+      }
+    ],
+    "totals": {
+      "itemsTotalRub": 40,
+      "shippingRub": 550,
+      "orderTotalRub": 590
+    },
+    "payment": {
+      "provider": "yookassa",
+      "status": "succeeded",
+      "paymentId": "TEST_PAYMENT"
+    },
+    "status": "paid",
+    "emailsSent": true
+  },
+  {
+    "id": "o_mm8xlsh7_w7xzoi",
+    "orderNumber": "Y-20260302-234CD3D1",
+    "createdAt": "2026-03-02T08:43:14.923Z",
+    "customer": {
+      "fullName": "Дудурев Ярослав",
+      "email": "yorikdud@mail.ru",
+      "phone": "+79653463689",
+      "comment": ""
+    },
+    "shipping": {
+      "carrier": "cdek",
+      "carrierLabel": "СДЭК (ПВЗ)",
+      "pvzAddress": "Москва, улица Добролюбова, 21А, корп. А — СДЭК (ПВЗ)",
+      "postcode": "127254",
+      "lat": 55.817722,
+      "lon": 37.59037,
+      "manual": false
+    },
+    "items": [
+      {
+        "productId": "p_mkf79gd1_idqvvo",
+        "name": "Y - 002",
+        "size": "XL",
+        "color": null,
+        "quantity": 1,
+        "priceRub": 40,
+        "preorder": true,
+        "comingSoon": false,
+        "image": "/uploads/1771418132916_ttt.png",
+        "imageAbs": "http://localhost:3000/uploads/1771418132916_ttt.png"
+      }
+    ],
+    "totals": {
+      "itemsTotalRub": 40,
+      "shippingRub": 550,
+      "orderTotalRub": 590
+    },
+    "payment": {
+      "provider": "yookassa",
+      "status": "succeeded",
+      "paymentId": "TEST_PAYMENT"
+    },
+    "status": "paid",
+    "emailsSent": true
+  }
+]

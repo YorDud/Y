@@ -1,0 +1,288 @@
+<!-- public/payment-success.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="/Y_ico_site.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Y_ico_site.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Y_ico_site.png">
+  <meta charset="UTF-8" />
+  <title>Спасибо — Y</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .thanks {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 18px;
+    }
+    .thanks-card {
+      border: 1px solid #e5e5e5;
+      background: #fff;
+      padding: 18px;
+    }
+    .thanks-top {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+    .brandline {
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+    .status-pill {
+      border: 1px solid #000;
+      padding: 6px 10px;
+      font-size: 12px;
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      white-space: nowrap;
+    }
+    .status-pill.ok { background:#000; color:#fff; }
+    .status-pill.wait { background:transparent; color:#000; }
+    .status-pill.bad { border-color:#999; color:#666; }
+
+    .grid {
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+    }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+
+    .block {
+      border: 1px solid #eee;
+      padding: 12px;
+    }
+    .muted { color:#666; }
+    .order-no {
+      font-weight: 700;
+      letter-spacing: .3px;
+      font-size: 16px;
+    }
+    .items {
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .item {
+      display:grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    .item:last-child { border-bottom: none; padding-bottom: 0; }
+    .item img {
+      width:64px; height:64px; object-fit:cover;
+      border: 1px solid #eee;
+      background:#000;
+    }
+    .sumrow {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top: 10px;
+      font-weight: 700;
+    }
+    .actions {
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .btn {
+      display:inline-block;
+      border:1px solid #000;
+      padding:10px 12px;
+      text-decoration:none;
+      color:#000;
+      background:transparent;
+    }
+    .btn.black { background:#000; color:#fff; }
+    .small { font-size:12px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Y — underwear</div>
+    <nav class="nav">
+      <a href="/#now">NOW</a>
+      <a href="/#others">Others Collections</a>
+      <a href="/#info">Info</a>
+    </nav>
+    <a class="cart-btn" href="/" aria-label="На главную">←</a>
+  </header>
+
+  <main class="thanks">
+    <div class="thanks-card">
+      <div class="thanks-top">
+        <div>
+          <div class="brandline">Y — underwear</div>
+          <h2 style="margin:10px 0 6px;">Спасибо за заказ</h2>
+          <div class="muted">Мы проверяем оплату и готовим подтверждение на вашу почту.</div>
+        </div>
+        <div id="statusPill" class="status-pill wait">Статус: проверяем…</div>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <div class="muted small">Номер заказа</div>
+          <div id="orderNo" class="order-no">—</div>
+
+          <div id="items" class="items"></div>
+
+          <div class="sumrow">
+            <span>Итого</span>
+            <span id="total">—</span>
+          </div>
+
+          <div class="actions">
+            <a class="btn black" href="/">На главную</a>
+            <button class="btn" id="refreshBtn" type="button">Обновить статус</button>
+          </div>
+
+          <div class="muted small" style="margin-top:10px;">
+            Если статус долго не меняется, проверьте почту или напишите в поддержку.
+          </div>
+        </div>
+
+        <div class="block">
+          <div style="font-weight:700; margin-bottom:8px;">Что дальше</div>
+          <ol class="muted small" style="margin:0; padding-left:18px; display:grid; gap:6px;">
+            <li>После оплаты вы получите письмо с подтверждением.</li>
+            <li>Мы собираем заказ и подготавливаем отправку.</li>
+            <li>По вопросам — пишите в поддержку.</li>
+          </ol>
+          <div class="muted small" style="margin-top:12px;">
+            Поддержка: <span id="supportEmail">—</span><br/>
+            Телефон: <span id="supportPhone">—</span>
+          </div>
+
+          <div class="muted small" style="margin-top:12px;">
+            <div style="font-weight:700; color:#000;">Статусы</div>
+            <div>paid — оплачено</div>
+            <div>pending — ожидает подтверждения</div>
+            <div>canceled — отменено</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function qs(name) {
+      const u = new URL(location.href);
+      return u.searchParams.get(name);
+    }
+
+    function money(amount, currency='RUB') {
+      const sign = currency === 'RUB' ? '₽' : (currency === 'EUR' ? '€' : '$');
+      return sign + Number(amount).toFixed(2);
+    }
+
+    function setStatus(status, paymentStatus) {
+      const pill = document.getElementById('statusPill');
+      if (status === 'paid') {
+        pill.className = 'status-pill ok';
+        pill.textContent = 'Статус: оплачено (paid)';
+      } else if (status === 'canceled') {
+        pill.className = 'status-pill bad';
+        pill.textContent = 'Статус: отменено (canceled)';
+      } else {
+        pill.className = 'status-pill wait';
+        pill.textContent = `Статус: ожидает (pending) / payment=${paymentStatus || '—'}`;
+      }
+    }
+
+    async function fetchOrder(orderNumber) {
+      // 1) проверяем платеж через verify (сервер подтянет статус из YooKassa)
+      const vr = await fetch('/api/payment/yookassa/verify', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ orderNumber })
+      });
+      const vdata = await vr.json().catch(() => ({}));
+      if (!vr.ok) throw new Error(vdata.error || 'Verify error');
+
+      // 2) забираем детали заказа из localStorage (мы их сохраним перед редиректом в checkout.js ниже)
+      let local = null;
+      try { local = JSON.parse(localStorage.getItem('y_last_order') || 'null'); } catch {}
+      return { verify: vdata, local };
+    }
+
+    function renderFromLocal(orderNumber, local) {
+      document.getElementById('orderNo').textContent = orderNumber;
+
+      if (!local || local.orderNumber !== orderNumber) {
+        document.getElementById('items').innerHTML = '<div class="muted small">Детали заказа недоступны на этом устройстве.</div>';
+        return;
+      }
+
+      const itemsEl = document.getElementById('items');
+      itemsEl.innerHTML = '';
+      (local.items || []).forEach(it => {
+        const row = document.createElement('div');
+        row.className = 'item';
+        const img = document.createElement('img');
+        img.src = it.image || 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
+        img.alt = it.name || '';
+        const meta = document.createElement('div');
+        meta.innerHTML = `
+          <div style="font-weight:600">${it.name || ''}</div>
+          <div class="muted small">
+            ${it.size ? `Размер: ${it.size}<br/>` : ''}
+            ${it.color ? `Цвет: ${it.color}<br/>` : ''}
+            Кол-во: ${it.quantity}
+          </div>
+        `;
+        const sum = document.createElement('div');
+        sum.style.textAlign = 'right';
+        sum.textContent = money((it.price || 0) * (it.quantity || 1), (local.currency || 'RUB').toUpperCase());
+
+        row.appendChild(img);
+        row.appendChild(meta);
+        row.appendChild(sum);
+        itemsEl.appendChild(row);
+      });
+
+      document.getElementById('total').textContent =
+        money(local.total || 0, (local.currency || 'RUB').toUpperCase());
+    }
+
+    async function run() {
+      const orderNumber = qs('order');
+      document.getElementById('supportEmail').textContent = (localStorage.getItem('y_support_email') || 'y.underwear@mail.ru');
+      document.getElementById('supportPhone').textContent = (localStorage.getItem('y_support_phone') || '+7 (965) 346-36-89');
+
+      if (!orderNumber) {
+        document.getElementById('statusPill').className = 'status-pill bad';
+        document.getElementById('statusPill').textContent = 'Ошибка: нет номера заказа';
+        return;
+      }
+
+      try {
+        const { verify, local } = await fetchOrder(orderNumber);
+        setStatus(verify.status, verify.paymentStatus);
+        renderFromLocal(orderNumber, local);
+
+        if (verify.status === 'paid') {
+          try { localStorage.removeItem('y_cart'); } catch {}
+        }
+      } catch (e) {
+        document.getElementById('statusPill').className = 'status-pill bad';
+        document.getElementById('statusPill').textContent = 'Ошибка проверки статуса';
+        document.getElementById('items').innerHTML = '<div class="muted small">Не удалось получить статус. Попробуйте обновить.</div>';
+      }
+    }
+
+    document.getElementById('refreshBtn').addEventListener('click', run);
+    run();
+  </script>
+</body>
+</html>

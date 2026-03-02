@@ -1,0 +1,76 @@
+<!-- public/orders.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="/Y_ico_site.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Y_ico_site.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Y_ico_site.png">
+  <meta charset="UTF-8" />
+  <title>Orders — Y</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    .panel { border:1px solid #e5e5e5; background:#fff; padding: 16px; }
+    .row { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; }
+    .mini-btn { border: 1px solid #000; background: #000; color:#fff; padding: 6px 8px; cursor:pointer; font-size: 12px; }
+    .mini-btn.secondary { background: transparent; color:#000; }
+    .mini-btn.danger { border-color:#c00; color:#c00; background:transparent; }
+    .order { border:1px solid #eee; padding:12px; margin-top:12px; display:grid; gap:10px; }
+    .muted { color:#666; font-size:12px; }
+    .items { display:grid; gap:6px; }
+    .it { display:flex; justify-content:space-between; gap:10px; border-top:1px solid #f0f0f0; padding-top:6px; }
+    .badge { border:1px solid #000; padding:2px 6px; font-size:12px; display:inline-block; }
+    .controls { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+    select, input[type="text"] { border:1px solid #e5e5e5; padding:8px; }
+    .totals { border-top:1px solid #eee; padding-top:8px; display:grid; gap:4px; }
+    .line { display:flex; justify-content:space-between; gap:10px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Orders — Y</div>
+    <nav class="nav">
+      <a href="/admin.html">← админка</a>
+      <a href="/">на сайт</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="panel">
+      <div class="row">
+        <div>
+          <div style="font-weight:700;">Все заказы</div>
+          <div class="muted">Структура: customer.fullName, shipping.*, totals.*</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button id="refresh" class="mini-btn secondary">Обновить</button>
+          <button id="exportCsv" class="mini-btn secondary">Экспорт CSV</button>
+          <button id="logout" class="mini-btn">Logout</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <label class="muted">Статус:
+          <select id="statusFilter">
+            <option value="all">Все</option>
+            <option value="paid">paid</option>
+            <option value="pending">pending</option>
+            <option value="canceled">canceled</option>
+          </select>
+        </label>
+
+        <label class="muted">Поиск по номеру:
+          <input id="search" type="text" placeholder="Y-2026..." />
+        </label>
+
+        <span class="muted" id="count"></span>
+      </div>
+
+      <div id="list"></div>
+    </div>
+  </main>
+
+  <script src="/orders.js"></script>
+</body>
+</html>

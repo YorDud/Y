@@ -1,0 +1,88 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Y — underwear</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Y — underwear. Minimal, black & white.">
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/Y_ico_site.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Y_ico_site.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Y_ico_site.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Y — underwear</div>
+    <nav class="nav">
+      <a href="#now">NOW</a>
+      <a href="#others">Others Collections</a>
+      <a href="#info">Info</a>
+    </nav>
+    <button class="cart-btn" id="openCart" aria-label="Корзина">
+      <svg class="cart-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 12.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      <span id="cartCount" class="cart-count">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <h1>Y — underwear</h1>
+      <p></p>
+    </section>
+
+    <section id="now" class="section">
+      <div class="section-head">
+        <h2>NOW</h2>
+        <p>Коллекции, доступные к заказу сейчас</p>
+      </div>
+      <div id="nowContainer"></div>
+    </section>
+
+    <section id="others" class="section">
+      <div class="section-head">
+        <h2>Others Collections</h2>
+        <p>Проданные/архивные коллекции (для просмотра)</p>
+      </div>
+      <div id="archiveContainer"></div>
+    </section>
+
+    <section id="info" class="section info">
+      <h2>Info</h2>
+      <p>Y — underwear. Y - Бренд прогрессивного нижнего белья для превосходных людей</p>
+      <p>Контакты: y.underwear.mail.ru</p>
+      <p>Instagram: @y.underwear / Telegram: @y.underwear</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© Y — underwear</span>
+    <a href="/admin.html" class="admin-link">admin</a>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <aside id="cartDrawer" class="cart-drawer">
+    <div class="cart-header">
+      <h3>Корзина</h3>
+      <button id="closeCart" aria-label="Закрыть">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-summary">
+      <div class="cart-total">
+        <span>Итого:</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <a href="/checkout.html" class="checkout-btn" id="goCheckout">Оформить</a>
+    </div>
+  </aside>
+  <div id="backdrop" class="backdrop"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

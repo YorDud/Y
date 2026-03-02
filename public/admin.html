@@ -1,0 +1,210 @@
+<!-- public/admin.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/Y_ico_site.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Y_ico_site.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Y_ico_site.png">
+  <meta charset="UTF-8" />
+  <title>Admin — Y</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .admin-wrap { padding: 20px; max-width: 1100px; margin: 0 auto; }
+    .admin-grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+    .panel { border: 1px solid #e5e5e5; padding: 16px; background:#fff; }
+    .panel h3 { margin: 0 0 10px; }
+    .row { display: grid; gap: 8px; grid-template-columns: 1fr 1fr; }
+    .row label { font-size: 12px; color: #666; }
+    input[type="text"], input[type="number"], select, textarea, input[type="password"] {
+      width: 100%; padding: 8px; border: 1px solid #e5e5e5; background: #fff;
+    }
+    .list { margin-top: 10px; display: grid; gap: 8px; }
+    .list-item { border: 1px solid #e5e5e5; padding: 8px; display: grid; gap: 6px; background:#fff; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .mini-btn { border: 1px solid #000; background: #000; color:#fff; padding: 6px 8px; cursor:pointer; font-size: 12px; }
+    .mini-btn.secondary { background: transparent; color:#000; }
+    .mini-btn.danger { border-color:#c00; color:#c00; background:transparent; }
+    .help { color:#666; font-size:12px; }
+    .thumb-row { display:flex; gap:8px; flex-wrap:wrap; }
+    .thumb-card { border:1px solid #eee; padding:6px; display:flex; flex-direction:column; gap:6px; align-items:center; }
+    .thumb-card img { width:82px; height:82px; object-fit:cover; }
+    .thumb-card .row { display:flex; gap:6px; grid-template-columns:none; }
+
+    .switch {
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border:1px solid #eee;
+      background:#fafafa;
+      margin-bottom: 12px;
+    }
+
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.35);
+      display:none; align-items:center; justify-content:center; padding:18px;
+      z-index: 9999;
+    }
+    .modal {
+      background:#fff; border:1px solid #e5e5e5; width: min(720px, 100%);
+      padding: 14px;
+    }
+    .modal-head { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+    .modal-title { font-weight:700; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Admin — Y</div>
+    <nav class="nav">
+      <a href="/">← на сайт</a>
+      <a href="/orders.html">Заказы</a>
+    </nav>
+  </header>
+
+  <main class="admin-wrap">
+    <div id="loginPanel" class="panel">
+      <h3>Вход</h3>
+      <div class="row" style="grid-template-columns: 1fr 1fr;">
+        <div>
+          <label>Логин</label>
+          <input id="loginUser" type="text" placeholder="admin" />
+        </div>
+        <div>
+          <label>Пароль</label>
+          <input id="loginPass" type="password" placeholder="••••••" />
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <button id="loginBtn" class="mini-btn">Войти</button>
+      </div>
+      <div id="loginMsg" style="color:#c00; margin-top:8px;"></div>
+    </div>
+
+    <div id="adminPanel" style="display:none;" class="admin-grid">
+      <div class="panel">
+        <h3>Настройки</h3>
+        <div class="switch">
+          <input id="useYooKassa" type="checkbox" />
+          <div>
+            <div style="font-weight:700;">Использовать YooKassa</div>
+            <div class="help">Если выключено — заказы создаются как “оплачено (тест)” и письма отправляются сразу.</div>
+          </div>
+        </div>
+
+        <div class="row" style="grid-template-columns: 1fr 1fr;">
+          <div>
+            <label>Стоимость доставки (₽)</label>
+            <input id="shippingFlatRub" type="number" min="0" step="1" value="550" />
+            <div class="help">Например: 550</div>
+          </div>
+          <div></div>
+        </div>
+
+        <button id="saveSettings" class="mini-btn">Сохранить настройки</button>
+        <div id="settingsMsg" class="help" style="margin-top:8px;"></div>
+      </div>
+
+      <div class="panel">
+        <h3>Коллекции</h3>
+        <div class="row">
+          <div>
+            <label>Название</label>
+            <input id="colName" type="text" placeholder="Y — NOW 002" />
+          </div>
+          <div>
+            <label>Статус</label>
+            <select id="colStatus">
+              <option value="now">now (в продаже)</option>
+              <option value="archive">archive (архив)</option>
+            </select>
+          </div>
+          <div>
+            <label>Порядок (число)</label>
+            <input id="colOrder" type="number" value="1" />
+          </div>
+          <div>
+            <label>Описание</label>
+            <input id="colDesc" type="text" placeholder="" />
+          </div>
+        </div>
+        <div style="margin-top:8px;">
+          <button id="addCollection" class="mini-btn">Добавить коллекцию</button>
+        </div>
+        <div class="list" id="collectionsList"></div>
+      </div>
+
+      <div class="panel">
+        <h3>Товары</h3>
+        <div class="row">
+          <div>
+            <label>Название</label>
+            <input id="pName" type="text" placeholder="Y Brief 001" />
+          </div>
+          <div>
+            <label>Цена (например 3990)</label>
+            <input id="pPrice" type="number" step="1" placeholder="3990" />
+          </div>
+          <div>
+            <label>Валюта</label>
+            <input id="pCurrency" type="text" value="rub" />
+          </div>
+          <div>
+            <label>Коллекция</label>
+            <select id="pCollection"></select>
+          </div>
+          <div>
+            <label>Размеры (через запятую)</label>
+            <input id="pSizes" type="text" placeholder="S,M,L,XL" />
+          </div>
+          <div>
+            <label>Состояние</label>
+            <select id="pState">
+              <option value="available">В наличии</option>
+              <option value="preorder">Предзаказ</option>
+              <option value="soon">СКОРО</option>
+              <option value="soldout">Sold out</option>
+              <option value="hidden">Недоступен</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row" style="grid-template-columns: 1fr;">
+          <div>
+            <label>Описание</label>
+            <textarea id="pDesc" rows="2"></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top:8px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <input id="pImageFile" type="file" accept="image/*" multiple />
+          <button id="uploadImage" class="mini-btn secondary">Загрузить изображения</button>
+          <span class="help">Можно выбрать несколько</span>
+        </div>
+        <div id="imagesPreview" class="thumb-row"></div>
+
+        <div style="margin-top:8px;">
+          <button id="addProduct" class="mini-btn">Добавить товар</button>
+        </div>
+
+        <div class="list" id="productsList"></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="modalBackdrop" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-head">
+        <div id="modalTitle" class="modal-title">Редактирование</div>
+        <button id="modalClose" class="mini-btn secondary" type="button">Закрыть</button>
+      </div>
+      <div id="modalBody" style="margin-top:10px;"></div>
+      <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end;">
+        <button id="modalSave" class="mini-btn" type="button">Сохранить</button>
+      </div>
+      <div id="modalMsg" class="help" style="margin-top:8px;"></div>
+    </div>
+  </div>
+
+  <script src="/admin.js"></script>
+</body>
+</html>

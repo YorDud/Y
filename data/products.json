@@ -1,0 +1,74 @@
+[
+  {
+    "id": "p_mkf79gd1_idqvvo",
+    "name": "Y - 002",
+    "price": 40,
+    "currency": "usd",
+    "collectionId": "c_mkf6pvwf_8l6ysb",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "available": true,
+    "soldOut": false,
+    "images": [
+      "/uploads/1771418132916_ttt.png",
+      "/uploads/1771418132922_IMG_5277.PNG"
+    ],
+    "description": "",
+    "preorder": true
+  },
+  {
+    "id": "p_mkf82sj2_kla6q1",
+    "name": "Y - 003",
+    "price": 40,
+    "currency": "usd",
+    "collectionId": "c_mkf6pvwf_8l6ysb",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "available": true,
+    "soldOut": false,
+    "images": [
+      "/uploads/1768467807050_v1_boxers.png",
+      "/uploads/1768467807062_56396bbc6b558231a6eedf90bb451584_896c18d2-a49b-4d8d-938f-8113a21c2650.png",
+      "/uploads/1768467807075_ChatGPT_Image_22_________2025______15_20_03.png"
+    ],
+    "description": "",
+    "preorder": false,
+    "comingSoon": true
+  },
+  {
+    "id": "p_mlq6k2d0_pasdpc",
+    "name": "ffff",
+    "price": 2990,
+    "currency": "rub",
+    "collectionId": "c_mkf6pvwf_8l6ysb",
+    "sizes": [
+      "fff"
+    ],
+    "available": true,
+    "soldOut": false,
+    "images": [],
+    "description": ""
+  },
+  {
+    "id": "p_mlq96dq0_n4tnfv",
+    "name": "5",
+    "price": 5,
+    "currency": "rub",
+    "collectionId": "c_mkf6pvwf_8l6ysb",
+    "sizes": [
+      "555"
+    ],
+    "available": true,
+    "soldOut": false,
+    "images": [],
+    "description": "5"
+  }
+]

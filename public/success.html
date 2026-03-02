@@ -1,0 +1,24 @@
+<!-- public/success.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="/Y_ico_site.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/Y_ico_site.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/Y_ico_site.png">
+  <meta charset="UTF-8" />
+  <title>Успешная оплата — Y</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script>
+    // Очистим корзину после возврата
+    try { localStorage.removeItem('y_cart'); } catch {}
+  </script>
+</head>
+<body>
+  <main class="section" style="min-height:60vh;">
+    <h2>Спасибо! Оплата прошла успешно.</h2>
+    <p>Мы свяжемся с вами для подтверждения и отправки.</p>
+    <p><a href="/">Вернуться на главную</a></p>
+  </main>
+</body>
+</html>
