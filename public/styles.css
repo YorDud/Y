@@ -328,12 +328,12 @@ body {
 }
 
 .footer-socials {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, 24px);
   justify-content: center;
   align-items: center;
   gap: 18px;
   margin: 12px 0;
-  flex-wrap: wrap;
 }
 
 .social-link {
@@ -356,4 +356,24 @@ body {
 .social-link:hover {
   opacity: 0.7;
   transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .footer-socials {
+    grid-template-columns: repeat(3, 24px);
+    row-gap: 16px;
+    column-gap: 22px;
+  }
+}
+
+.admin-link {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-size: 12px;
+  opacity: 0.08;
+  transition: opacity 0.2s ease;
+}
+
+.admin-link:hover {
+  opacity: 0.18;
 }
